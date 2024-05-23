@@ -1,6 +1,6 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { Layout } from "../../components";
-import { Home, NotFound, Spinner } from "../../Pages";
+import { Home, Spinner } from "../../Pages";
 
 export function RouterSwitcher() {
   return (
@@ -8,7 +8,7 @@ export function RouterSwitcher() {
       <Route path="/" element={<Layout />}>
         <Route path="" element={<Home />} />
         <Route path="spinner" element={<Spinner />} />
-        <Route path="*" element={<NotFound />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
     </Routes>
   );
