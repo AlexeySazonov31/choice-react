@@ -15,9 +15,9 @@ export function Layout() {
         <Link
           to="/spinner"
           data-active={location.pathname === "/spinner"}
-          className="data-[active=true]:text-zinc-300"
+          className="data-[active=true]:text-zinc-400 data-[active=true]:hover:text-zinc-300"
         >
-          Spinner
+          {location.pathname === "/spinner" ? "Items" : "Spinner"}
         </Link>
       </nav>
       <Outlet />
