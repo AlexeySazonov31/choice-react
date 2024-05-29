@@ -15,6 +15,7 @@ export default {
       },
       animation: {
         'appear': 'appear 0.8s ease-in',
+        'modal-frame-appear': "modal-frame-appear .15s ease",
       },
       keyframes: {
         appear: {
@@ -26,7 +27,11 @@ export default {
             transform: 'scale(1, 1)',
             opacity: "1",
           },
-        }
+        },
+        'modal-frame-appear': {
+          "0%": { opacity: 0 },
+          "100%": { opacity: 1 }
+        },
       }
     },
   },
