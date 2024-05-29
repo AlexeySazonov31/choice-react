@@ -57,7 +57,7 @@
 @media only screen and (min-width: 800px) {
   :root {
     --wheel-size: 500px;
-    --wheel-slice-spacing: 50px;
+    --wheel-slice-spacing: 35px;
   }
 }
 
@@ -114,7 +114,8 @@
 }
 
 .wheel.spinning {
-  transition: transform var(--spinning-duration) cubic-bezier(0.120, 0.015, 0.000, 0.995);
+  transition: transform var(--spinning-duration)
+    cubic-bezier(0.12, 0.015, 0, 0.995);
   transform: rotate(
     calc(
       var(--nb-turn) * 360deg +
@@ -125,9 +126,7 @@
 
 .wheel.preview {
   transition: none;
-  transform: rotate(
-    calc( -360deg * var(--initial-item) / var(--nb-item, 1) )
-  );
+  transform: rotate(calc(-360deg * var(--initial-item) / var(--nb-item, 1)));
 }
 
 .wheel::after {
@@ -158,6 +157,7 @@
   text-align: right;
   padding: 0 25px 0 50px;
   font-family: var(--wheel-font);
+  font-size: 20px;
 }
 
 .wheel-item:before {

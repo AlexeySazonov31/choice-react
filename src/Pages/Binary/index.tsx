@@ -1,19 +1,29 @@
 import { useEffect, useState } from "react";
 
-import videoBg1 from "../../assets/videos/1.mp4";
-import videoBg2 from "../../assets/videos/2.mp4";
-import videoBg3 from "../../assets/videos/3.mp4";
-import videoBg4 from "../../assets/videos/4.mp4";
-import videoBg5 from "../../assets/videos/5.mp4";
-import videoBg6 from "../../assets/videos/6.mp4";
-import videoBg7 from "../../assets/videos/7.mp4";
-import videoBg8 from "../../assets/videos/8.mp4";
-import videoBg9 from "../../assets/videos/9.mp4";
-import videoBg10 from "../../assets/videos/10.mp4";
+import videoBg1 from "../../assets/videos/1.mp4"; // * no
+import videoBg2 from "../../assets/videos/2.mp4"; // * yes
+// import videoBg3 from "../../assets/videos/3.mp4"; // * 
+// import videoBg4 from "../../assets/videos/4.mp4"; // * 
+import videoBg5 from "../../assets/videos/5.mp4"; // * no
+import videoBg6 from "../../assets/videos/6.mp4"; // * yes
+import videoBg7 from "../../assets/videos/7.mp4"; // * yes
+import videoBg8 from "../../assets/videos/8.mp4"; // * no
+// import videoBg9 from "../../assets/videos/9.mp4"; // * 
+import videoBg10 from "../../assets/videos/10.mp4"; // * yes
+import videoBg11 from "../../assets/videos/11.mp4"; // * no
+// import videoBg12 from "../../assets/videos/12.mp4"; // * 
+import videoBg13 from "../../assets/videos/13.mp4"; // * no
+import videoBg14 from "../../assets/videos/14.mp4"; // * yes
+import videoBg15 from "../../assets/videos/15.mp4"; // * yes
+import videoBg16 from "../../assets/videos/16.mp4"; // * yes
+import videoBg17 from "../../assets/videos/17.mp4"; // * no
+// import videoBg18 from "../../assets/videos/18.mp4"; // * 
+import videoBg19 from "../../assets/videos/19.mp4"; // * yes
+import videoBg20 from "../../assets/videos/20.mp4"; // * no
 
 const videos = {
-  yes: [videoBg6, videoBg7, videoBg8, videoBg9, videoBg10],
-  no: [videoBg1, videoBg2, videoBg3, videoBg4, videoBg5],
+  yes: [videoBg2, videoBg6, videoBg7, videoBg10, videoBg14, videoBg15, videoBg16, videoBg19],
+  no: [videoBg1, videoBg5, videoBg11, videoBg13, videoBg17, videoBg20, videoBg8],
 };
 
 export function Binary() {

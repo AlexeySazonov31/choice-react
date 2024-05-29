@@ -1,4 +1,3 @@
-// import { useState } from "react";
 import { useState } from "react";
 import {
   Link,
@@ -26,7 +25,7 @@ export function Layout() {
           className="data-[active=true]:text-zinc-400 data-[active=true]:hover:text-zinc-300"
           onClick={() => location.pathname === "/spinner" && setModal("items")}
         >
-          {location.pathname === "/spinner" ? "Items" : "Spinner"}
+          {location.pathname === "/spinner" ? "Options" : "Spinner"}
         </Link>
       </nav>
       <Outlet context={[modal, setModal]} />

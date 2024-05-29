@@ -1,5 +1,10 @@
-// import "react";
+import React, { Dispatch, useEffect, useState } from "react";
+import { useOutletContext } from "react-router-dom";
+
+import { usePrevious } from "../../hooks";
 import { Modal } from "../../components";
+
+import "./spinner.css";
 
 declare module "react" {
   interface CSSProperties {
@@ -7,27 +12,29 @@ declare module "react" {
   }
 }
 
-const initialTextareaValue = "Item 1\nItem 2\nItem 3\nItem 4";
+const initialTextareaValue = "Yes\nNo\nMaybe";
 const spinDuration = 8;
-
-import { useOutletContext } from "react-router-dom";
-import { usePrevious } from "../../hooks";
-import "./spinner.css";
-import React, { Dispatch, useState } from "react";
 
 export function Spinner() {
   const [selectedItem, setSelectedItem] = useState<null | number>(null);
-  const [isSpinning, setIsSpinning] = useState<boolean>(false);
-  const [textareaValue, setTextareaValue] =
-    useState<string>(initialTextareaValue);
   const prevSelectedItem = usePrevious(selectedItem);
-
-  const items = textareaValue.split("\n").filter((str) => /\w+/.test(str));
-
+  const [isSpinning, setIsSpinning] = useState<boolean>(false);
+  const [textareaValue, setTextareaValue] = useState<string>(() => {
+    const json = window.localStorage.getItem("textareaChoiceApp");
+    if (json) {
+      return JSON.parse(json);
+    } else {
+      return initialTextareaValue;
+    }
+  });
   const [modal, setModal]: [
     { winner: string } | "items" | null,
     Dispatch<{ winner: string } | "items" | null>,
   ] = useOutletContext();
+
+  const items = textareaValue
+    .split("\n")
+    .filter((str) => /[а-яёА-ЯË\w]+/.test(str));
 
   const selectItem = () => {
     if (items.length === 0 || isSpinning === true) {
@@ -52,6 +59,7 @@ export function Spinner() {
       }, spinDuration * 1000);
     }
   }
+
   const wheelVars = {
     "--nb-item": items.length,
     "--selected-item": selectedItem,
@@ -73,10 +81,17 @@ export function Spinner() {
   if (cssProperties["--neutral-color"] === "null")
     cssProperties["--neutral-color"] = "#FFFFFF";
 
+  useEffect(() => {
+    window.localStorage.setItem(
+      "textareaChoiceApp",
+      JSON.stringify(textareaValue),
+    );
+  }, [textareaValue]);
+
   return (
     <>
       <Modal.Frame
-        open={Boolean(modal)}
+        open={Boolean(modal) && isSpinning === false}
         onClose={() => {
           setModal(null);
         }}
@@ -114,9 +129,7 @@ export function Spinner() {
                 type="button"
                 onClick={() => {
                   setTextareaValue(
-                    items
-                      .filter(str => str !== modal?.winner)
-                      .join("\n")
+                    items.filter((str) => str !== modal?.winner).join("\n"),
                   );
                   setModal(null);
                 }}
