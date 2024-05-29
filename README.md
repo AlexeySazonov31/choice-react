@@ -1,3 +1,15 @@
+# Choice APP
+
+[Result](https://choice-react.vercel.app/)
+
+Technology stack: 
+
+* TypeScript
+* React
+* React router dom
+* Tailwindcss
+
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
