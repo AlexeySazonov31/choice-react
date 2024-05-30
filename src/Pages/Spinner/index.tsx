@@ -145,7 +145,7 @@ export function Spinner() {
         style={cssProperties}
         className="grid h-full"
       >
-        <h1 className="pt-5 text-center text-xl text-white">Click to spin</h1>
+        <h1 className="pt-7 text-center text-xl text-white">Click to spin</h1>
         <div className="wheel-container mb-20 justify-self-center">
           <div
             className={`wheel ${spinningCssClass}`}

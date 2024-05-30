@@ -11,7 +11,7 @@ export function Layout() {
 
   return (
     <>
-      <nav className="fixed bottom-5 left-1/2 z-10 -ml-32 flex w-64 select-none justify-center divide-x divide-zinc-800 overflow-hidden rounded-lg border border-zinc-800 text-center text-zinc-500 *:flex-1 *:bg-zinc-900 *:py-3 *:transition-all">
+      <nav className="fixed bottom-7 left-1/2 z-10 -ml-32 flex w-64 select-none justify-center divide-x divide-zinc-800 overflow-hidden rounded-lg border border-zinc-800 text-center text-zinc-500 *:flex-1 *:bg-zinc-900 *:py-3 *:transition-all">
         <Link
           to="/"
           data-active={location.pathname === "/"}
