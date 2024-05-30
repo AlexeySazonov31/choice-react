@@ -14,7 +14,7 @@ export default {
         lg: '0 8px 16px var(--tw-shadow-color)',
       },
       animation: {
-        'appear': 'appear 0.8s ease-in',
+        'appear': 'appear 0.8s cubic-bezier(0.085, 0.900, 0.560, 1.225)',
         'modal-frame-appear': "modal-frame-appear .15s ease",
       },
       keyframes: {

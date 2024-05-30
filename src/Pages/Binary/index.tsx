@@ -28,19 +28,19 @@ const videos = {
 
 export function Binary() {
   const [randomBoolean, setRandomBoolean] = useState<boolean>(true);
-  const [videoLoad, setVideoLoad] = useState<boolean>(false);
   const [currentVideoIndex, setCurrentVideoIndex] = useState<number | null>(
     null,
   );
+  const [show, setShow] = useState<boolean>(false);
 
   function handleChange() {
-    setVideoLoad(false);
+    setShow(false);
     setTimeout(() => {
       const newRandomBoolean = Math.random() < 0.5;
       const randomNumber = getRandomInteger(0, videos[newRandomBoolean ? "yes" : "no"].length);
       setCurrentVideoIndex(randomNumber);
       setRandomBoolean(newRandomBoolean);
-    }, 400);
+    }, 300);
   }
 
   useEffect(() => {
@@ -64,14 +64,16 @@ export function Binary() {
               : undefined
           }
           style={{
-            opacity: videoLoad ? "0.5" : "0",
+            opacity: show ? "0.5" : "0",
           }}
           onCanPlay={() => {
-            setVideoLoad(true);
+            setTimeout(() => {
+              setShow(true);
+            }, 600);
           }}
-          className="absolute z-0 h-full w-full object-cover transition-all duration-500"
+          className="absolute z-0 h-full w-full object-cover transition-opacity duration-300"
         />
-        {videoLoad ? (
+        {show ? (
           <h1 className="z-10 pb-20 animate-appear select-none text-7xl font-bold uppercase shadow-zinc-900 text-shadow">
             {randomBoolean ? "yes" : "no"}
           </h1>
