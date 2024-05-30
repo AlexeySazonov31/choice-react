@@ -2,6 +2,7 @@ import classNames from "classnames";
 import React, { useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import { getFocusableElements, nextFocus, usePortal } from "../../utils";
+import useDetectKeyboardOpen from "use-detect-keyboard-open";
 
 export const Frame: React.FC<{
   children: React.ReactNode;
@@ -56,25 +57,35 @@ export const Frame: React.FC<{
     if (open) {
       previousFocus.current = (document.activeElement as HTMLElement) ?? null;
       nextFocus(getFocusableElements(container.current));
+      container.current?.scrollIntoView();
     } else {
       previousFocus.current?.focus?.();
       previousFocus.current = null;
     }
   }, [open, portal]); // note: when importing, eslint doesn't recognise that portal is a ref, so it doesn't need to be in the deps array
 
+  // scroll to modal if native keyboard is open
+  const isKeyboardOpen = useDetectKeyboardOpen();
+  useEffect(() => {
+    if (isKeyboardOpen) {
+      const unit = document.documentElement.scrollHeight / 100;
+      scrollTo(0, 20 * unit);
+    }
+  }, [isKeyboardOpen]);
+
   return ReactDOM.createPortal(
     // transparent overlay: `inset-0` to stretch over the entire screen (combines`top-0`, `right-0`, `bottom-0`, and `left-0`)
     <div
       data-active={open}
       className={classNames(
-        "fixed inset-0 z-10 bg-black/70 backdrop-blur text-white justify-center items-center p-4 animate-modal-frame-appear",
+        "fixed inset-0 z-10 animate-modal-frame-appear items-center justify-center bg-black/70 p-4 text-white backdrop-blur",
         `${open ? "visible flex" : "invisible hidden"}`, // control visibility via `open` attribute (or render conditionally)
       )}
       onClick={closeOnClickOutside ? onOverlayClick : undefined}
     >
       {/* container: `max - w - sm` to make it reasonably narrow, `mx - auto` to center horizontally */}
       <div
-        className="relative mx-auto pb-10 w-full max-w-md"
+        className="relative mx-auto w-full max-w-md pb-10"
         ref={container}
       >
         {/* contents */}
@@ -83,7 +94,7 @@ export const Frame: React.FC<{
         </div>
         {/* closer in the corner */}
         <button
-          className="absolute -right-2 -top-2 flex h-8 w-8 cursor-pointer justify-center rounded border border-zinc-800 bg-zinc-900 shadow-xl outline-none hover:bg-zinc-950 transition-colors active:text-zinc-500"
+          className="absolute -right-2 -top-2 flex h-8 w-8 cursor-pointer justify-center rounded border border-zinc-800 bg-zinc-900 shadow-xl outline-none transition-colors hover:bg-zinc-950 active:text-zinc-500"
           onClick={() => onClose()}
           title="close"
         >

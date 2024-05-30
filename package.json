@@ -13,7 +13,8 @@
     "classnames": "^2.5.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.23.1"
+    "react-router-dom": "^6.23.1",
+    "use-detect-keyboard-open": "^0.4.0"
   },
   "devDependencies": {
     "@kalimahapps/eslint-plugin-tailwind": "^1.1.0",
